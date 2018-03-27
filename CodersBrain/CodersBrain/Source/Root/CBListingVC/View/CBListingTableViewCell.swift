@@ -31,22 +31,21 @@ class CBListingTableViewCell: UITableViewCell {
     
     
     func update(model : CBListingModel , buttonTag : Int){
-        fetchFavouritedChannelList()
+        fetchSavelList()
         if saveListArray.count == 0{
             savedButton.setImage(UIImage(named: "unsavedIcon"), for: UIControlState.normal)
         }
-        checkForFavourite(model : model)
+        checkForSave(model : model)
     }
     
     
     // Pragma MARK : Check For Favourite
     
-    func checkForFavourite(model : CBListingModel){
+    func checkForSave(model : CBListingModel){
         if saveListArray.count > 0 {
             for index in 0...saveListArray.count-1 {
                 let favouritedSection = saveListArray[index]
                 let channelTittle = favouritedSection.value(forKeyPath: "name") as? String
-                
                 if (channelTittle == model.name){
                     savedButton.setImage(UIImage(named: "saveIcon"), for: UIControlState.normal)
                     break
@@ -65,7 +64,7 @@ class CBListingTableViewCell: UITableViewCell {
                 (sender as AnyObject).setImage(UIImage(named: "saveIcon"), for: UIControlState.normal)
             }
             else{
-                removeChannelList(model: ListArray[sender.tag])
+                removeSavelList(model: ListArray[sender.tag])
                 (sender as AnyObject).setImage(UIImage(named: "unsavedIcon"), for: UIControlState.normal)
             }
         }
@@ -100,7 +99,7 @@ class CBListingTableViewCell: UITableViewCell {
     }
     // Pragma MARK : Fetching Favourited Channel List
     
-    func fetchFavouritedChannelList(){
+    func fetchSavelList(){
         guard let appDelegate =
             UIApplication.shared.delegate as? AppDelegate else {
                 return
@@ -118,7 +117,7 @@ class CBListingTableViewCell: UITableViewCell {
     
     // Pragma MARK : Remove Favourited Channel List
     
-    func removeChannelList(model : CBListingModel){
+    func removeSavelList(model : CBListingModel){
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
             return
         }

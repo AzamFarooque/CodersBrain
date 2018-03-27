@@ -31,28 +31,27 @@ class CBLoginViewController: UIViewController, GIDSignInUIDelegate {
     // Pragma MARK : Facebook Login Button Action
     
     @IBAction func loginButtonClicked(_ sender: UIButton) {
-//        if sender.titleLabel?.text == "Login"{
-//            let loginManager = LoginManager()
-//            loginManager.logIn([.publicProfile], viewController: self) { loginResult in
-//                switch loginResult {
-//                case .failed(let error):
-//                    print(error)
-//                case .cancelled:
-//                    print("User cancelled login.")
-//                case .success:
-//                    sender.setTitle("Logout", for: .normal)
-//                    self.getFBUserData()
-//
-//                }
-//            }
-//        }
-//        else{
-//            UserDefaults.standard.removeObject(forKey: "id")
-//            let loginManager = FBSDKLoginManager()
-//            loginManager.logOut()
-//            sender.setTitle("Login", for: .normal)
-//        }
-        
+        if sender.titleLabel?.text == "Login"{
+            let loginManager = LoginManager()
+            loginManager.logIn(readPermissions: [.publicProfile], viewController: self) { loginResult in
+                switch loginResult {
+                case .failed(let error):
+                    print(error)
+                case .cancelled:
+                    print("User cancelled login.")
+                case .success:
+                    sender.setTitle("Logout", for: .normal)
+                    self.getFBUserData()
+
+                }
+            }
+        }
+        else{
+            UserDefaults.standard.removeObject(forKey: "id")
+            let loginManager = FBSDKLoginManager()
+            loginManager.logOut()
+            sender.setTitle("Login", for: .normal)
+        }
     }
     
     // Pragma Mark : Function is fetching the user data
@@ -66,7 +65,7 @@ class CBLoginViewController: UIViewController, GIDSignInUIDelegate {
                     let name = self.dict["name"] as! String
                     UserDefaults.standard.set(id, forKey: "id")
                     UserDefaults.standard.set(name, forKey: "name")
-                    
+                    self.dismiss(animated: true, completion: nil)
                 }
             })
         }
