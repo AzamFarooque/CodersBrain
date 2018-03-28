@@ -2,8 +2,8 @@
 //  SurgeSendMainTabBarController.swift
 //  SurgeSend
 //
-//  Created by Happlabs Software LLP MAC1 on 15/03/18.
-//  Copyright © 2018 Happlabs Software LLP. All rights reserved.
+//  Created by Farooque on 26/03/18.
+//  Copyright © Farooque. All rights reserved.
 //
 
 import UIKit

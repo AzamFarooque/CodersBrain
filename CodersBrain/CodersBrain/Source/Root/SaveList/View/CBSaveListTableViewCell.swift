@@ -2,7 +2,7 @@
 //  CBSaveListTableViewCell.swift
 //  CodersBrain
 //
-//  Created by Happlabs Software LLP MAC1 on 27/03/18.
+//  Created by Farooque on 27/03/18.
 //  Copyright © 2018 Farooque. All rights reserved.
 //
 

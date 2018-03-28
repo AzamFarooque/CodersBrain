@@ -2,8 +2,8 @@
 //  UIView.swift
 //  SurgeSend
 //
-//  Created by Happlabs Software LLP MAC1 on 13/02/18.
-//  Copyright © 2018 Happlabs Software LLP. All rights reserved.
+//  Created by Farooque on 28/03/18.
+//  Copyright Farooque. All rights reserved.
 //
 
 import UIKit
@@ -22,14 +22,6 @@ extension UIView {
     }
     
     func addShadow(){
-//        self.layer.shadowRadius = 2
-//        self.layer.shadowColor = UIColor.black.cgColor
-//        self.layer.shadowOpacity = 0.5
-//        self.layer.masksToBounds = false
-//        self.layer.shadowOffset = CGSize(width: 0, height: 1)
-//
-        
-        
         self.layer.shadowRadius = 2
         self.layer.shadowOpacity = 0.2
         self.layer.masksToBounds = false

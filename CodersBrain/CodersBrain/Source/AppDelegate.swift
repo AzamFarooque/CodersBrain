@@ -2,7 +2,7 @@
 //  AppDelegate.swift
 //  CodersBrain
 //
-//  Created by Happlabs Software LLP MAC1 on 26/03/18.
+//  Created by Farooque on 26/03/18.
 //  Copyright © 2018 Farooque. All rights reserved.
 //
 

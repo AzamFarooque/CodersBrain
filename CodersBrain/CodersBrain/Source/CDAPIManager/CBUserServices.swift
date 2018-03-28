@@ -3,7 +3,7 @@
 //  AzamMedia
 //
 //  Created by Farooque on 09/10/17.
-//  Copyright © 2017 Quintype. All rights reserved.
+//  Copyright Farooque. All rights reserved.
 //
 
 import Foundation
