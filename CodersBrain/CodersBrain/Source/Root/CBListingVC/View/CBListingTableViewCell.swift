@@ -14,7 +14,7 @@ protocol CBDelegate : class {
 }
 
 class CBListingTableViewCell: UITableViewCell {
-    
+    let coreDataUtility = CBCoreDataUtilityFile()
     @IBOutlet weak var savedButton: UIButton!
     @IBOutlet weak var cntView: UIView!
     @IBOutlet weak var nameLabel: UILabel!
@@ -23,16 +23,27 @@ class CBListingTableViewCell: UITableViewCell {
     var ListArray :  [CBListingModel] = []
     var saveListArray: [NSManagedObject] = []
     
+    @IBOutlet weak var saveOrRemoveLabel: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
+        imgView.applyRoundCorner(radius: 40, borderWidth: 1, borderColor: UIColor.red)
+        imgView.clipsToBounds = true
         cntView.applyRoundCorner(radius: 10, borderWidth: 0, borderColor: nil)
         cntView.addShadow()
     }
     
     
     func update(model : CBListingModel , buttonTag : Int){
-        fetchSavelList()
+        coreDataUtility.fetchSavelList()
+        saveListArray = coreDataUtility.saveListArray
+        if let news = model.news{
+        nameLabel.text = news
+        }
+        if let img = model.images{
+        imgView.image =  UIImage(named :img)
+        }
         if saveListArray.count == 0{
+            saveOrRemoveLabel.text = "Tap To Save Article."
             savedButton.setImage(UIImage(named: "unsavedIcon"), for: UIControlState.normal)
         }
         checkForSave(model : model)
@@ -45,12 +56,14 @@ class CBListingTableViewCell: UITableViewCell {
         if saveListArray.count > 0 {
             for index in 0...saveListArray.count-1 {
                 let favouritedSection = saveListArray[index]
-                let channelTittle = favouritedSection.value(forKeyPath: "name") as? String
-                if (channelTittle == model.name){
+                let channelTittle = favouritedSection.value(forKeyPath: "news") as? String
+                if (channelTittle == model.news){
+                    saveOrRemoveLabel.text = "Tap To Remove Article."
                     savedButton.setImage(UIImage(named: "saveIcon"), for: UIControlState.normal)
                     break
                 }
                 else{
+                    saveOrRemoveLabel.text = "Tap To Save Article."
                     savedButton.setImage(UIImage(named: "unsavedIcon"), for: UIControlState.normal)
                 }
             }
@@ -60,11 +73,13 @@ class CBListingTableViewCell: UITableViewCell {
     @IBAction func didTapToSave(_ sender: UIButton) {
         if UserDefaults.standard.value(forKey: "id") != nil{
             if (sender as AnyObject).currentImage!.isEqual(UIImage(named: "unsavedIcon")){
-                saveChannelList(model: ListArray[sender.tag] , Index: sender.tag)
+                coreDataUtility.saveChannelList(model: ListArray[sender.tag] , Index: sender.tag)
+                saveOrRemoveLabel.text = "Tap To Remove Article."
                 (sender as AnyObject).setImage(UIImage(named: "saveIcon"), for: UIControlState.normal)
             }
             else{
-                removeSavelList(model: ListArray[sender.tag])
+                coreDataUtility.removeSavelList(model: ListArray[sender.tag])
+                saveOrRemoveLabel.text = "Tap To Save Article."
                 (sender as AnyObject).setImage(UIImage(named: "unsavedIcon"), for: UIControlState.normal)
             }
         }
@@ -72,79 +87,4 @@ class CBListingTableViewCell: UITableViewCell {
             delegate?.presentLoginController()
         }
     }
-    
-    // Pragma MARK : Save Channel List in Core Data
-    
-    func saveChannelList(model : CBListingModel , Index : Int ){
-        guard let appDelegate =
-            UIApplication.shared.delegate as? AppDelegate else {
-                return
-        }
-        let managedContext =
-            appDelegate.persistentContainer.viewContext
-        let entity =
-            NSEntityDescription.entity(forEntityName: "CBSavedList",
-                                       in: managedContext)!
-        let listInfo = NSManagedObject(entity: entity,
-                                       insertInto: managedContext)
-        listInfo.setValue(model.name!, forKeyPath: "name")
-        listInfo.setValue(model.images!, forKeyPath: "images")
-        listInfo.setValue(Index, forKey: "index")
-        do {
-            try managedContext.save()
-            saveListArray.append(listInfo)
-        } catch let error as NSError {
-            print("Could not save. \(error), \(error.userInfo)")
-        }
-    }
-    // Pragma MARK : Fetching Favourited Channel List
-    
-    func fetchSavelList(){
-        guard let appDelegate =
-            UIApplication.shared.delegate as? AppDelegate else {
-                return
-        }
-        let managedContext =
-            appDelegate.persistentContainer.viewContext
-        let fetchRequest =
-            NSFetchRequest<NSManagedObject>(entityName: "CBSavedList")
-        do {
-            saveListArray = try managedContext.fetch(fetchRequest)
-        } catch let error as NSError {
-            print("Could not fetch. \(error), \(error.userInfo)")
-        }
-    }
-    
-    // Pragma MARK : Remove Favourited Channel List
-    
-    func removeSavelList(model : CBListingModel){
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
-            return
-        }
-        
-        for index in 0...saveListArray.count-1 {
-            let favouritedSection = saveListArray[index]
-            let name = favouritedSection.value(forKeyPath: "name") as? String
-            if (name == model.name!) {
-                
-                let managedContext =
-                    appDelegate.persistentContainer.viewContext
-                managedContext.delete(saveListArray[index])
-                do {
-                    try managedContext.save()
-                } catch let error as NSError {
-                    print("Could not save. \(error), \(error.userInfo)")
-                    
-                }
-            }
-        }
-    }
-    
-    
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-        
-        // Configure the view for the selected state
-    }
-    
 }

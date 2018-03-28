@@ -13,6 +13,7 @@ import CoreData
 
 class CBListingViewController: UIViewController,UITableViewDelegate,UITableViewDataSource,CBDelegate {
     
+    let coreDataUtility = CBCoreDataUtilityFile()
     @IBOutlet weak var logoutButton: UIButton!
     @IBOutlet weak var logoutLabel: UILabel!
     @IBOutlet weak var nameLabel: UILabel!
@@ -89,20 +90,21 @@ class CBListingViewController: UIViewController,UITableViewDelegate,UITableViewD
         
         let section:CBListingModel = listArray[indexPath.row] as! CBListingModel
         cell.update(model : section , buttonTag : indexPath.row)
-        cell.imageView?.applyRoundCorner(radius: 50, borderWidth: 0, borderColor: nil)
-        cell.imgView?.image = UIImage(named : section.images!)
-        cell.imageView?.clipsToBounds = true
-        cell.delegate = self as? CBDelegate
+        cell.delegate = self
         cell.savedButton.tag = indexPath.row
         cell.ListArray = listArray as! [CBListingModel]
-        cell.nameLabel.text = section.name!
-        
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let storyboard = UIStoryboard(storyboard: .listingDetail)
+        let detailViewController : CBListingDetailViewController = storyboard.instantiateViewController()
+        detailViewController.listModel = listArray[indexPath.row] as! CBListingModel
+        self.navigationController?.present(detailViewController, animated: true)
     }
     
     
     @IBAction func didTapLogoutButton(_ sender: Any) {
-        
          confirmLogout()
     }
     
@@ -122,31 +124,11 @@ class CBListingViewController: UIViewController,UITableViewDelegate,UITableViewD
         logoutButton.isHidden = true
         nameLabel.isHidden = true
         logoutLabel.isHidden = true
-        deleteFavouritedChannelList()
+        coreDataUtility.deleteFavouritedChannelList()
         fetchList()
     }
     
-    
-    func deleteFavouritedChannelList(){
-        guard let appDelegate =
-            UIApplication.shared.delegate as? AppDelegate else {
-                return
-        }
-        
-        let context = appDelegate.persistentContainer.viewContext
-        
-        let deleteFetch = NSFetchRequest<NSFetchRequestResult>(entityName: "CBSavedList")
-        let deleteRequest = NSBatchDeleteRequest(fetchRequest: deleteFetch)
-        
-        do {
-            try context.execute(deleteRequest)
-            try context.save()
-        } catch {
-            print ("There was an error")
-        }
-    }
-    
-
+   
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
        

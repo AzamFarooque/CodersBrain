@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		2E18D04743677273896DC52C /* Pods_CodersBrain.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FDB9F829E3EFF402333E2E6C /* Pods_CodersBrain.framework */; };
+		CD1B04D5206B5FD200922556 /* CBListingDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD1B04D4206B5FD200922556 /* CBListingDetailViewController.swift */; };
+		CD1B04D8206B5FF200922556 /* listingDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CD1B04D7206B5FF200922556 /* listingDetail.storyboard */; };
+		CD1B04DC206B7D0800922556 /* credentials.plist in Resources */ = {isa = PBXBuildFile; fileRef = CD1B04DB206B7D0800922556 /* credentials.plist */; };
 		CD6AC1B120691735000CB1CF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6AC1B020691735000CB1CF /* AppDelegate.swift */; };
 		CD6AC1B620691735000CB1CF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CD6AC1B420691735000CB1CF /* Main.storyboard */; };
 		CD6AC1B920691735000CB1CF /* CodersBrain.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CD6AC1B720691735000CB1CF /* CodersBrain.xcdatamodeld */; };
@@ -24,9 +27,9 @@
 		CD6BB35C206A1A5700712F2E /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6BB35B206A1A5700712F2E /* UIView.swift */; };
 		CD6BB35E206A1E4000712F2E /* CBTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6BB35D206A1E4000712F2E /* CBTabBarController.swift */; };
 		CD6BB363206A1F2100712F2E /* CBLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6BB362206A1F2100712F2E /* CBLoginViewController.swift */; };
-		CD6BB365206A2E0700712F2E /* credentials.plist in Resources */ = {isa = PBXBuildFile; fileRef = CD6BB364206A2E0700712F2E /* credentials.plist */; };
 		CD6BB369206A565600712F2E /* CBSaveListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6BB368206A565600712F2E /* CBSaveListViewController.swift */; };
 		CD6BB36C206A57DC00712F2E /* CBSaveListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6BB36B206A57DC00712F2E /* CBSaveListTableViewCell.swift */; };
+		CD6BB370206ABE2E00712F2E /* CBCoreDataUtilityFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6BB36F206ABE2E00712F2E /* CBCoreDataUtilityFile.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +52,9 @@
 /* Begin PBXFileReference section */
 		28B873C3AEC414C520BBE30E /* Pods-CodersBrain.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CodersBrain.release.xcconfig"; path = "Pods/Target Support Files/Pods-CodersBrain/Pods-CodersBrain.release.xcconfig"; sourceTree = "<group>"; };
 		81FC4619FEB7B44AE0E26DE0 /* Pods-CodersBrain.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CodersBrain.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CodersBrain/Pods-CodersBrain.debug.xcconfig"; sourceTree = "<group>"; };
+		CD1B04D4206B5FD200922556 /* CBListingDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CBListingDetailViewController.swift; sourceTree = "<group>"; };
+		CD1B04D7206B5FF200922556 /* listingDetail.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = listingDetail.storyboard; sourceTree = "<group>"; };
+		CD1B04DB206B7D0800922556 /* credentials.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = credentials.plist; sourceTree = "<group>"; };
 		CD6AC1AD20691735000CB1CF /* CodersBrain.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CodersBrain.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD6AC1B020691735000CB1CF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CD6AC1B520691735000CB1CF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -71,9 +77,9 @@
 		CD6BB35B206A1A5700712F2E /* UIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
 		CD6BB35D206A1E4000712F2E /* CBTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CBTabBarController.swift; sourceTree = "<group>"; };
 		CD6BB362206A1F2100712F2E /* CBLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CBLoginViewController.swift; sourceTree = "<group>"; };
-		CD6BB364206A2E0700712F2E /* credentials.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = credentials.plist; sourceTree = "<group>"; };
 		CD6BB368206A565600712F2E /* CBSaveListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CBSaveListViewController.swift; sourceTree = "<group>"; };
 		CD6BB36B206A57DC00712F2E /* CBSaveListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CBSaveListTableViewCell.swift; sourceTree = "<group>"; };
+		CD6BB36F206ABE2E00712F2E /* CBCoreDataUtilityFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CBCoreDataUtilityFile.swift; sourceTree = "<group>"; };
 		FDB9F829E3EFF402333E2E6C /* Pods_CodersBrain.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CodersBrain.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -120,6 +126,31 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		CD1B04D2206B5F1C00922556 /* CBListingDetail */ = {
+			isa = PBXGroup;
+			children = (
+				CD1B04D6206B5FDC00922556 /* StoryBoard */,
+				CD1B04D3206B5F9F00922556 /* ViewController */,
+			);
+			path = CBListingDetail;
+			sourceTree = "<group>";
+		};
+		CD1B04D3206B5F9F00922556 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				CD1B04D4206B5FD200922556 /* CBListingDetailViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		CD1B04D6206B5FDC00922556 /* StoryBoard */ = {
+			isa = PBXGroup;
+			children = (
+				CD1B04D7206B5FF200922556 /* listingDetail.storyboard */,
+			);
+			path = StoryBoard;
+			sourceTree = "<group>";
+		};
 		CD6AC1A420691735000CB1CF = {
 			isa = PBXGroup;
 			children = (
@@ -145,7 +176,6 @@
 		CD6AC1AF20691735000CB1CF /* CodersBrain */ = {
 			isa = PBXGroup;
 			children = (
-				CD6BB364206A2E0700712F2E /* credentials.plist */,
 				CD6BB357206A15A500712F2E /* Source */,
 				CD6AC1B420691735000CB1CF /* Main.storyboard */,
 				CD6AC1BA20691735000CB1CF /* Assets.xcassets */,
@@ -235,6 +265,8 @@
 		CD6BB357206A15A500712F2E /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				CD1B04DB206B7D0800922556 /* credentials.plist */,
+				CD6BB36F206ABE2E00712F2E /* CBCoreDataUtilityFile.swift */,
 				CD6AC1B020691735000CB1CF /* AppDelegate.swift */,
 				CD6BB35B206A1A5700712F2E /* UIView.swift */,
 				CD6BB349206A12F000712F2E /* StoryBoard */,
@@ -247,6 +279,7 @@
 		CD6BB358206A15B100712F2E /* Root */ = {
 			isa = PBXGroup;
 			children = (
+				CD1B04D2206B5F1C00922556 /* CBListingDetail */,
 				CD6BB366206A562D00712F2E /* SaveList */,
 				CD6BB360206A1EF700712F2E /* Login */,
 				CD6BB35F206A1EE800712F2E /* TabBar */,
@@ -416,8 +449,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				CD6AC1BE20691735000CB1CF /* LaunchScreen.storyboard in Resources */,
+				CD1B04DC206B7D0800922556 /* credentials.plist in Resources */,
 				CD6AC1BB20691735000CB1CF /* Assets.xcassets in Resources */,
-				CD6BB365206A2E0700712F2E /* credentials.plist in Resources */,
+				CD1B04D8206B5FF200922556 /* listingDetail.storyboard in Resources */,
 				CD6AC1B620691735000CB1CF /* Main.storyboard in Resources */,
 				CD6BB343206A11B100712F2E /* jsonFile.json in Resources */,
 			);
@@ -525,6 +559,8 @@
 				CD6BB34D206A141A00712F2E /* CBListingViewController.swift in Sources */,
 				CD6BB352206A14B900712F2E /* CBUserServices.swift in Sources */,
 				CD6BB36C206A57DC00712F2E /* CBSaveListTableViewCell.swift in Sources */,
+				CD6BB370206ABE2E00712F2E /* CBCoreDataUtilityFile.swift in Sources */,
+				CD1B04D5206B5FD200922556 /* CBListingDetailViewController.swift in Sources */,
 				CD6BB35E206A1E4000712F2E /* CBTabBarController.swift in Sources */,
 				CD6BB369206A565600712F2E /* CBSaveListViewController.swift in Sources */,
 				CD6BB35A206A160300712F2E /* CBListingTableViewCell.swift in Sources */,

@@ -10,51 +10,50 @@ import UIKit
 import FacebookLogin
 import FBSDKLoginKit
 import GoogleSignIn
+import Google
 
-class CBLoginViewController: UIViewController, GIDSignInUIDelegate {
+
+class CBLoginViewController: UIViewController, GIDSignInDelegate,GIDSignInUIDelegate,LoginButtonDelegate {
     
     @IBOutlet weak var skipButton: UIButton!
     var dict : [String : AnyObject]!
-
+    let clientID = "761614235758-t0ekvqvfijc3qnrokugrm7dl8390ft2n.apps.googleusercontent.com"
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         skipButton.applyRoundCorner(radius: 20, borderWidth: 0, borderColor: nil)
-        
-        GIDSignIn.sharedInstance().uiDelegate = self
-       
         
         if (FBSDKAccessToken.current()) != nil{
             getFBUserData()
         }
     }
     
-    // Pragma MARK : Facebook Login Button Action
-    
-    @IBAction func loginButtonClicked(_ sender: UIButton) {
-        if sender.titleLabel?.text == "Login"{
-            let loginManager = LoginManager()
-            loginManager.logIn(readPermissions: [.publicProfile], viewController: self) { loginResult in
-                switch loginResult {
-                case .failed(let error):
-                    print(error)
-                case .cancelled:
-                    print("User cancelled login.")
-                case .success:
-                    sender.setTitle("Logout", for: .normal)
-                    self.getFBUserData()
-
-                }
-            }
-        }
-        else{
-            UserDefaults.standard.removeObject(forKey: "id")
-            let loginManager = FBSDKLoginManager()
-            loginManager.logOut()
-            sender.setTitle("Login", for: .normal)
-        }
+    override func viewDidAppear(_ animated: Bool) {
+        GIDSignIn.sharedInstance().clientID = clientID
+        GIDSignIn.sharedInstance().uiDelegate = self
+        GIDSignIn.sharedInstance().delegate = self
+        
+         // Gmail creating button
+        let googleSignInButton = GIDSignInButton()
+        googleSignInButton.frame = CGRect(x: self.view.frame.width/2 - 50 , y: self.view.frame.height/2, width : 50 , height : 50)
+        self.view.addSubview(googleSignInButton)
+        
+        // Facebook creating button
+        let loginButton = LoginButton(readPermissions: [ .publicProfile ])
+        loginButton.frame = CGRect(x: self.view.frame.width/2 - 50 , y: self.view.frame.height/2 - 50, width : 115 , height : 35)
+        loginButton.delegate = self
+        view.addSubview(loginButton)
+        
     }
     
-    // Pragma Mark : Function is fetching the user data
+    func loginButtonDidCompleteLogin(_ loginButton: LoginButton, result: LoginResult) {
+        getFBUserData()
+    }
+    func loginButtonDidLogOut(_ loginButton: LoginButton) {
+        
+    }
+    
+    // Pragma Mark : Facebook Function is fetching the user data
     
     func getFBUserData(){
         if((FBSDKAccessToken.current()) != nil){
@@ -77,10 +76,20 @@ class CBLoginViewController: UIViewController, GIDSignInUIDelegate {
         self.dismiss(animated: true, completion: nil)
     }
     
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-       
+    
+    
+    //  Pragma Mark : Gamil Information when signin complets.
+    
+    func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
+        if error != nil{
+            print(error ?? "google error")
+            return
+        }
+        else{
+            UserDefaults.standard.set(1, forKey: "id")
+            UserDefaults.standard.set(user.profile.name!, forKey: "name")
+            self.dismiss(animated: true, completion: nil)
+        }
+        
     }
-   
 }

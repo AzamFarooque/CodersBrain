@@ -11,12 +11,12 @@ import Foundation
 class CBListingModel: NSObject {
     
     var images : String?
-    var name : String?
-    var storiesArray : NSArray?
+    var news : String?
+    var newsDetail : String?
     
     init(json: NSDictionary) {
         self.images = json["imageURL"] as? String
-        self.name = json["name"] as? String
-        self.storiesArray = json["storiesInside"] as? NSArray
+        self.news = json["news"] as? String
+        self.newsDetail = json["newsDetail"] as? String
     }
 }

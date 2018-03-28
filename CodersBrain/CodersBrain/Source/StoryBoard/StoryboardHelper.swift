@@ -12,6 +12,7 @@ extension UIStoryboard {
   
   enum Storyboard : String {
     case Main
+    case listingDetail
     
   }
   

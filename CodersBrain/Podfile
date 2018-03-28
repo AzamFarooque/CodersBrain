@@ -7,5 +7,5 @@ target 'CodersBrain' do
 pod 'SwiftyJSON'
 pod 'FacebookCore'
 pod 'FacebookLogin'
-pod 'GoogleSignIn'
+pod 'Google/SignIn'
 end
